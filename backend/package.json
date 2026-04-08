@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "tsx --env-file=../.env server.ts",
+    "dev": "tsx server.ts",
+    "dev:local": "tsx --env-file=../.env server.ts",
     "buyer": "tsx --env-file=../.env agents/buyer.ts"
   },
   "keywords": [],
