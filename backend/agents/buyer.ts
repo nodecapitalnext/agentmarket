@@ -100,17 +100,16 @@ async function runPaymentLoop(count: number) {
         const { status } = await client.pay(`${BASE_URL}/api/price?symbol=${symbol}`);
         console.log(`[${i + 1}/${count}] price/${symbol} → ${status}`);
       } else {
-        const { status } = await client.pay(`${BASE_URL}/api/summarize`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ text: texts[i % texts.length] }),
-        });
-        console.log(`[${i + 1}/${count}] summarize → ${status}`);
+        const pairs = [["USDC","EURC"], ["EURC","USDC"]];
+        const pair = pairs[i % pairs.length];
+        const { status } = await client.pay(`${BASE_URL}/api/fx?from=${pair[0]}&to=${pair[1]}&amount=100`);
+        console.log(`[${i + 1}/${count}] fx/${pair[0]}-${pair[1]} → ${status}`);
       }
       success++;
     } catch (err: any) {
       console.error(`[${i + 1}/${count}] HATA: ${err?.message ?? err}`);
       failed++;
+      if (failed === 1) break; // ilk hatada dur
     }
     await new Promise((r) => setTimeout(r, 400));
   }
