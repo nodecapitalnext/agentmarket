@@ -109,7 +109,6 @@ async function runPaymentLoop(count: number) {
     } catch (err: any) {
       console.error(`[${i + 1}/${count}] HATA: ${err?.message ?? err}`);
       failed++;
-      if (failed === 1) break; // ilk hatada dur
     }
     await new Promise((r) => setTimeout(r, 400));
   }
