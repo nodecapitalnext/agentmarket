@@ -4,12 +4,14 @@ import { useState } from "react";
 
 const API = process.env.NEXT_PUBLIC_API_URL || "http://localhost:4000";
 
-type AgentType = "weather" | "price" | "summarize";
+type AgentType = "weather" | "price" | "summarize" | "fx" | "sentiment";
 
 const AGENTS = [
   { id: "weather" as AgentType, name: "Weather Agent", icon: "🌤", price: "$0.001", method: "GET" },
   { id: "price" as AgentType, name: "Price Feed Agent", icon: "📈", price: "$0.001", method: "GET" },
   { id: "summarize" as AgentType, name: "Summarize Agent", icon: "✍️", price: "$0.005", method: "POST" },
+  { id: "fx" as AgentType, name: "FX Rate Agent", icon: "💱", price: "$0.002", method: "GET" },
+  { id: "sentiment" as AgentType, name: "Sentiment Agent", icon: "🧠", price: "$0.002", method: "POST" },
 ];
 
 export function AgentTester() {
@@ -30,6 +32,15 @@ export function AgentTester() {
         res = await fetch(`${API}/api/weather?city=${input || "Istanbul"}`);
       } else if (selected === "price") {
         res = await fetch(`${API}/api/price?symbol=${input || "BTC"}`);
+      } else if (selected === "fx") {
+        const [from, to] = (input || "USDC/EURC").split("/");
+        res = await fetch(`${API}/api/fx?from=${from || "USDC"}&to=${to || "EURC"}&amount=100`);
+      } else if (selected === "sentiment") {
+        res = await fetch(`${API}/api/sentiment`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ text: input || "Bitcoin is looking bullish today." }),
+        });
       } else {
         res = await fetch(`${API}/api/summarize`, {
           method: "POST",
@@ -81,6 +92,8 @@ export function AgentTester() {
           <label className="text-xs text-gray-500 mb-2 block">
             {selected === "weather" && "City name"}
             {selected === "price" && "Token symbol (BTC, ETH, SOL...)"}
+            {selected === "fx" && "Currency pair (USDC/EURC or EURC/USDC)"}
+            {selected === "sentiment" && "Text to analyze"}
             {selected === "summarize" && "Text to summarize"}
           </label>
           {selected === "summarize" ? (
@@ -96,7 +109,7 @@ export function AgentTester() {
               type="text"
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder={selected === "weather" ? "Istanbul" : "BTC"}
+              placeholder={selected === "weather" ? "Istanbul" : selected === "price" ? "BTC" : selected === "fx" ? "USDC/EURC" : "BTC is bullish"}
               className="w-full bg-gray-800 border border-gray-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:border-blue-500"
             />
           )}

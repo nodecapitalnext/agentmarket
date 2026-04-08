@@ -6,6 +6,7 @@ import { priceFeedAgent } from "./agents/priceFeedAgent.js";
 import { summarizeAgent } from "./agents/summarizeAgent.js";
 import { aiChatAgent, sentimentAgent } from "./agents/aiAgent.js";
 import { runOrchestrator } from "./agents/orchestrator.js";
+import { fxRateAgent, getSupportedCurrencies } from "./agents/fxAgent.js";
 import { txLogger } from "./services/txLogger.js";
 
 const app = express();
@@ -106,6 +107,21 @@ app.post("/api/orchestrate", async (req, res) => {
   } catch (e: any) {
     res.status(500).json({ error: e.message });
   }
+});
+
+// 7. FX Rate Agent — USDC/EURC StableFX — $0.002
+app.get("/api/fx", gateway.require("$0.002"), async (req, res) => {
+  const from = (req.query.from as string) || "USDC";
+  const to = (req.query.to as string) || "EURC";
+  const amount = parseFloat((req.query.amount as string) || "100");
+  const result = await fxRateAgent(from, to, amount);
+  txLogger.log("fx", req.payment?.payer ?? "unknown", 0.002);
+  res.json(result);
+});
+
+// 8. Supported currencies — ücretsiz
+app.get("/api/currencies", (_req, res) => {
+  res.json(getSupportedCurrencies());
 });
 
 // ─── Type augmentation ─────────────────────────────────────────────────────

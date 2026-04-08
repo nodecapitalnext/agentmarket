@@ -8,8 +8,9 @@ import { AgentTester } from "@/components/AgentTester";
 import { TxFeed } from "@/components/TxFeed";
 import { SubscriptionPanel } from "@/components/SubscriptionPanel";
 import { OrchestratorPanel } from "@/components/OrchestratorPanel";
+import { FXPanel } from "@/components/FXPanel";
 
-const TABS = ["Overview", "Orchestrator", "Try Agents", "Subscriptions", "Transactions"] as const;
+const TABS = ["Overview", "Orchestrator", "FX & Multi-Currency", "Try Agents", "Subscriptions", "Transactions"] as const;
 type Tab = typeof TABS[number];
 
 export default function Dashboard() {
@@ -46,6 +47,7 @@ export default function Dashboard() {
 
         {tab === "Overview" && <StatsPanel />}
         {tab === "Orchestrator" && <OrchestratorPanel />}
+        {tab === "FX & Multi-Currency" && <FXPanel />}
         {tab === "Try Agents" && <AgentTester />}
         {tab === "Subscriptions" && <SubscriptionPanel />}
         {tab === "Transactions" && <TxFeed />}
