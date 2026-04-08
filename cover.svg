@@ -1,0 +1,103 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#050818"/>
+      <stop offset="100%" style="stop-color:#0a1628"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#2563eb"/>
+      <stop offset="100%" style="stop-color:#7c3aed"/>
+    </linearGradient>
+    <linearGradient id="card" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e293b;stop-opacity:0.8"/>
+      <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0.8"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="softglow">
+      <feGaussianBlur stdDeviation="20" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Grid lines -->
+  <g stroke="#1e293b" stroke-width="1" opacity="0.5">
+    <line x1="0" y1="105" x2="1200" y2="105"/>
+    <line x1="0" y1="210" x2="1200" y2="210"/>
+    <line x1="0" y1="315" x2="1200" y2="315"/>
+    <line x1="0" y1="420" x2="1200" y2="420"/>
+    <line x1="0" y1="525" x2="1200" y2="525"/>
+    <line x1="200" y1="0" x2="200" y2="630"/>
+    <line x1="400" y1="0" x2="400" y2="630"/>
+    <line x1="600" y1="0" x2="600" y2="630"/>
+    <line x1="800" y1="0" x2="800" y2="630"/>
+    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  </g>
+
+  <!-- Glow orbs -->
+  <circle cx="200" cy="315" r="180" fill="#2563eb" opacity="0.06" filter="url(#softglow)"/>
+  <circle cx="1000" cy="315" r="200" fill="#7c3aed" opacity="0.07" filter="url(#softglow)"/>
+  <circle cx="600" cy="100" r="120" fill="#2563eb" opacity="0.05" filter="url(#softglow)"/>
+
+  <!-- Top badge -->
+  <rect x="480" y="60" width="240" height="32" rx="16" fill="#1e293b" stroke="#2563eb" stroke-width="1"/>
+  <circle cx="500" cy="76" r="5" fill="#22c55e"/>
+  <text x="514" y="81" font-family="monospace" font-size="12" fill="#94a3b8">Arc Testnet · eip155:5042002</text>
+
+  <!-- Main title -->
+  <text x="600" y="200" font-family="Arial Black, sans-serif" font-size="72" font-weight="900" fill="white" text-anchor="middle" letter-spacing="-2">AgentMarket</text>
+
+  <!-- Gradient underline -->
+  <rect x="300" y="215" width="600" height="4" rx="2" fill="url(#accent)"/>
+
+  <!-- Subtitle -->
+  <text x="600" y="270" font-family="Arial, sans-serif" font-size="22" fill="#94a3b8" text-anchor="middle">AI Agent API Marketplace on Arc</text>
+
+  <!-- Feature cards -->
+  <!-- Card 1 -->
+  <rect x="120" y="320" width="220" height="110" rx="12" fill="url(#card)" stroke="#1e40af" stroke-width="1"/>
+  <text x="230" y="355" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">🌤</text>
+  <text x="230" y="385" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Weather Agent</text>
+  <text x="230" y="405" font-family="monospace" font-size="12" fill="#2563eb" text-anchor="middle">$0.001 / call</text>
+
+  <!-- Card 2 -->
+  <rect x="490" y="320" width="220" height="110" rx="12" fill="url(#card)" stroke="#1e40af" stroke-width="1"/>
+  <text x="600" y="355" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">📈</text>
+  <text x="600" y="385" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Price Feed Agent</text>
+  <text x="600" y="405" font-family="monospace" font-size="12" fill="#2563eb" text-anchor="middle">$0.001 / call</text>
+
+  <!-- Card 3 -->
+  <rect x="860" y="320" width="220" height="110" rx="12" fill="url(#card)" stroke="#1e40af" stroke-width="1"/>
+  <text x="970" y="355" font-family="Arial, sans-serif" font-size="28" text-anchor="middle">✍️</text>
+  <text x="970" y="385" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Summarize Agent</text>
+  <text x="970" y="405" font-family="monospace" font-size="12" fill="#7c3aed" text-anchor="middle">$0.005 / call</text>
+
+  <!-- Flow arrows -->
+  <text x="370" y="382" font-family="Arial" font-size="20" fill="#334155" text-anchor="middle">→</text>
+  <text x="740" y="382" font-family="Arial" font-size="20" fill="#334155" text-anchor="middle">→</text>
+
+  <!-- Bottom bar -->
+  <rect x="0" y="560" width="1200" height="70" fill="#0f172a" opacity="0.9"/>
+  <rect x="0" y="560" width="1200" height="2" fill="url(#accent)"/>
+
+  <!-- Bottom logos/text -->
+  <text x="140" y="602" font-family="Arial, sans-serif" font-size="13" fill="#475569" text-anchor="middle">Powered by</text>
+  <rect x="180" y="582" width="90" height="28" rx="6" fill="#1e293b" stroke="#2563eb" stroke-width="1"/>
+  <text x="225" y="601" font-family="Arial Black, sans-serif" font-size="13" fill="#2563eb" text-anchor="middle">Circle</text>
+  <rect x="280" y="582" width="110" height="28" rx="6" fill="#1e293b" stroke="#7c3aed" stroke-width="1"/>
+  <text x="335" y="601" font-family="Arial Black, sans-serif" font-size="13" fill="#a78bfa" text-anchor="middle">Nanopayments</text>
+  <rect x="400" y="582" width="60" height="28" rx="6" fill="#1e293b" stroke="#22c55e" stroke-width="1"/>
+  <text x="430" y="601" font-family="Arial Black, sans-serif" font-size="13" fill="#22c55e" text-anchor="middle">Arc</text>
+  <rect x="470" y="582" width="50" height="28" rx="6" fill="#1e293b" stroke="#f59e0b" stroke-width="1"/>
+  <text x="495" y="601" font-family="Arial Black, sans-serif" font-size="13" fill="#f59e0b" text-anchor="middle">x402</text>
+
+  <!-- Right side stats -->
+  <text x="700" y="598" font-family="monospace" font-size="13" fill="#22c55e">✓ 50+ onchain txs</text>
+  <text x="870" y="598" font-family="monospace" font-size="13" fill="#2563eb">✓ gasless payments</text>
+  <text x="1040" y="598" font-family="monospace" font-size="13" fill="#a78bfa">✓ sub-cent pricing</text>
+</svg>

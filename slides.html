@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>AgentMarket — Pitch Deck</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', Arial, sans-serif; background: #050818; color: white; }
+  .slide { width: 100vw; height: 100vh; display: none; flex-direction: column; justify-content: center; align-items: center; padding: 60px; position: relative; overflow: hidden; }
+  .slide.active { display: flex; }
+  .slide::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 20% 50%, rgba(37,99,235,0.08) 0%, transparent 60%), radial-gradient(ellipse at 80% 50%, rgba(124,58,237,0.08) 0%, transparent 60%); pointer-events: none; }
+  .grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(30,41,59,0.4) 1px, transparent 1px), linear-gradient(90deg, rgba(30,41,59,0.4) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; }
+  .badge { display: inline-flex; align-items: center; gap: 8px; padding: 6px 16px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.4); border-radius: 20px; font-size: 13px; color: #93c5fd; margin-bottom: 24px; }
+  .dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+  h1 { font-size: 64px; font-weight: 900; letter-spacing: -2px; text-align: center; line-height: 1.1; }
+  h2 { font-size: 42px; font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
+  h3 { font-size: 22px; font-weight: 600; margin-bottom: 8px; }
+  .gradient { background: linear-gradient(135deg, #2563eb, #7c3aed); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+  .subtitle { font-size: 22px; color: #94a3b8; text-align: center; max-width: 700px; line-height: 1.6; margin-top: 16px; }
+  .cards { display: grid; gap: 20px; width: 100%; max-width: 900px; }
+  .cards.cols-3 { grid-template-columns: repeat(3, 1fr); }
+  .cards.cols-2 { grid-template-columns: repeat(2, 1fr); }
+  .card { background: rgba(30,41,59,0.6); border: 1px solid rgba(51,65,85,0.8); border-radius: 16px; padding: 28px; }
+  .card.blue { border-color: rgba(37,99,235,0.4); }
+  .card.purple { border-color: rgba(124,58,237,0.4); }
+  .card.green { border-color: rgba(34,197,94,0.4); }
+  .icon { font-size: 36px; margin-bottom: 12px; }
+  .price { font-size: 13px; font-family: monospace; color: #2563eb; margin-top: 8px; }
+  .stat { font-size: 48px; font-weight: 900; }
+  .stat-label { font-size: 14px; color: #64748b; margin-top: 4px; }
+  .flow { display: flex; align-items: center; gap: 12px; flex-wrap: wrap; justify-content: center; margin-top: 32px; }
+  .flow-item { padding: 10px 20px; background: rgba(30,41,59,0.8); border: 1px solid #334155; border-radius: 10px; font-size: 14px; }
+  .arrow { color: #334155; font-size: 20px; }
+  .nav { position: fixed; bottom: 30px; left: 50%; transform: translateX(-50%); display: flex; gap: 12px; z-index: 100; }
+  .nav button { padding: 10px 24px; background: rgba(30,41,59,0.9); border: 1px solid #334155; border-radius: 10px; color: white; cursor: pointer; font-size: 14px; transition: all 0.2s; }
+  .nav button:hover { border-color: #2563eb; }
+  .slide-num { position: fixed; top: 20px; right: 30px; font-size: 13px; color: #475569; }
+  .tag { display: inline-block; padding: 4px 12px; background: rgba(37,99,235,0.15); border: 1px solid rgba(37,99,235,0.3); border-radius: 6px; font-size: 12px; color: #93c5fd; margin: 3px; }
+  .tag.green { background: rgba(34,197,94,0.1); border-color: rgba(34,197,94,0.3); color: #86efac; }
+  .tag.purple { background: rgba(124,58,237,0.1); border-color: rgba(124,58,237,0.3); color: #c4b5fd; }
+  code { font-family: monospace; background: rgba(30,41,59,0.8); padding: 2px 8px; border-radius: 4px; font-size: 13px; color: #22c55e; }
+  .check { color: #22c55e; margin-right: 8px; }
+  ul { list-style: none; }
+  ul li { padding: 6px 0; font-size: 16px; color: #cbd5e1; }
+  .big-number { font-size: 80px; font-weight: 900; line-height: 1; }
+</style>
+</head>
+<body>
+
+<!-- Slide 1: Title -->
+<div class="slide active" id="s1">
+  <div class="grid"></div>
+  <div class="badge"><div class="dot"></div> Arc Testnet · Circle Nanopayments · x402</div>
+  <h1><span class="gradient">AgentMarket</span></h1>
+  <p class="subtitle">AI Agent API Marketplace where every request costs <strong style="color:white">$0.001 USDC</strong>, settled gaslessly on Arc via Circle Nanopayments</p>
+  <div class="flow" style="margin-top:40px">
+    <span class="tag">Per-API Monetization Engine</span>
+    <span class="tag green">50+ onchain txs</span>
+    <span class="tag purple">Agent-to-Agent Payments</span>
+  </div>
+</div>
+
+<!-- Slide 2: Problem -->
+<div class="slide" id="s2">
+  <div class="grid"></div>
+  <h2>The Problem</h2>
+  <p style="color:#94a3b8;margin-bottom:32px;font-size:18px">Gas costs make sub-cent API pricing economically impossible</p>
+  <div class="cards cols-2" style="max-width:800px">
+    <div class="card" style="border-color:rgba(239,68,68,0.4)">
+      <div class="icon">⛽</div>
+      <h3>Ethereum</h3>
+      <p style="color:#94a3b8;font-size:15px">$0.50 – $5.00 per transaction</p>
+      <p style="color:#ef4444;font-size:13px;margin-top:8px">❌ $0.001 API call = 500x gas overhead</p>
+    </div>
+    <div class="card" style="border-color:rgba(239,68,68,0.4)">
+      <div class="icon">💸</div>
+      <h3>Traditional APIs</h3>
+      <p style="color:#94a3b8;font-size:15px">Monthly subscriptions, no per-action pricing</p>
+      <p style="color:#ef4444;font-size:13px;margin-top:8px">❌ Pay for unused capacity</p>
+    </div>
+    <div class="card green">
+      <div class="icon">⚡</div>
+      <h3>Arc + Nanopayments</h3>
+      <p style="color:#94a3b8;font-size:15px">Gasless batched settlement via Circle Gateway</p>
+      <p style="color:#22c55e;font-size:13px;margin-top:8px">✓ $0.001/call is now viable</p>
+    </div>
+    <div class="card blue">
+      <div class="icon">🤖</div>
+      <h3>Agentic Economy</h3>
+      <p style="color:#94a3b8;font-size:15px">AI agents need micro-payments at scale</p>
+      <p style="color:#2563eb;font-size:13px;margin-top:8px">✓ Machine-to-machine commerce</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 3: Solution -->
+<div class="slide" id="s3">
+  <div class="grid"></div>
+  <h2>Our Solution</h2>
+  <p style="color:#94a3b8;margin-bottom:32px;font-size:18px">x402-protected APIs where AI agents pay per request</p>
+  <div class="cards cols-3">
+    <div class="card blue">
+      <div class="icon">🌤</div>
+      <h3>Weather Agent</h3>
+      <p style="color:#94a3b8;font-size:14px">Real-time weather data for any city</p>
+      <div class="price">$0.001 / call</div>
+    </div>
+    <div class="card blue">
+      <div class="icon">📈</div>
+      <h3>Price Feed Agent</h3>
+      <p style="color:#94a3b8;font-size:14px">Live crypto prices via CoinGecko</p>
+      <div class="price">$0.001 / call</div>
+    </div>
+    <div class="card purple">
+      <div class="icon">✍️</div>
+      <h3>Summarize Agent</h3>
+      <p style="color:#94a3b8;font-size:14px">AI-powered text summarization</p>
+      <div class="price">$0.005 / call</div>
+    </div>
+    <div class="card purple">
+      <div class="icon">🧠</div>
+      <h3>Sentiment Agent</h3>
+      <p style="color:#94a3b8;font-size:14px">Market sentiment analysis</p>
+      <div class="price">$0.002 / call</div>
+    </div>
+    <div class="card green">
+      <div class="icon">🤖</div>
+      <h3>AI Chat Agent</h3>
+      <p style="color:#94a3b8;font-size:14px">GPT-4o-mini powered responses</p>
+      <div class="price">$0.010 / call</div>
+    </div>
+    <div class="card" style="border-color:rgba(251,191,36,0.4)">
+      <div class="icon">🔗</div>
+      <h3>Orchestrator</h3>
+      <p style="color:#94a3b8;font-size:14px">Agent-to-agent payment chain</p>
+      <div class="price" style="color:#f59e0b">~$0.014 / query</div>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 4: Architecture -->
+<div class="slide" id="s4">
+  <div class="grid"></div>
+  <h2>How It Works</h2>
+  <p style="color:#94a3b8;margin-bottom:40px;font-size:18px">Circle Nanopayments + x402 protocol on Arc Testnet</p>
+  <div class="flow">
+    <div class="flow-item">🤖 Buyer Agent<br/><span style="font-size:11px;color:#64748b">GatewayClient</span></div>
+    <div class="arrow">→</div>
+    <div class="flow-item">📡 HTTP Request<br/><span style="font-size:11px;color:#64748b">x402 protocol</span></div>
+    <div class="arrow">→</div>
+    <div class="flow-item">🔒 402 Response<br/><span style="font-size:11px;color:#64748b">Payment required</span></div>
+    <div class="arrow">→</div>
+    <div class="flow-item">✍️ EIP-3009 Sign<br/><span style="font-size:11px;color:#64748b">Zero gas</span></div>
+    <div class="arrow">→</div>
+    <div class="flow-item">🏦 Circle Gateway<br/><span style="font-size:11px;color:#64748b">Batch settle</span></div>
+    <div class="arrow">→</div>
+    <div class="flow-item">⛓ Arc Testnet<br/><span style="font-size:11px;color:#22c55e">eip155:5042002</span></div>
+  </div>
+  <div style="margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;justify-content:center">
+    <span class="tag">@circle-fin/x402-batching</span>
+    <span class="tag">createGatewayMiddleware</span>
+    <span class="tag">GatewayClient.pay()</span>
+    <span class="tag green">USDC native gas</span>
+    <span class="tag purple">Sub-second finality</span>
+  </div>
+</div>
+
+<!-- Slide 5: Proof -->
+<div class="slide" id="s5">
+  <div class="grid"></div>
+  <h2>On-Chain Proof</h2>
+  <p style="color:#94a3b8;margin-bottom:32px;font-size:18px">Real transactions on Arc Testnet</p>
+  <div class="cards cols-3" style="max-width:800px">
+    <div class="card green" style="text-align:center">
+      <div class="big-number text-green-400" style="color:#22c55e">60</div>
+      <div class="stat-label">Successful payments</div>
+    </div>
+    <div class="card blue" style="text-align:center">
+      <div class="big-number" style="color:#2563eb">50+</div>
+      <div class="stat-label">Gateway txs on Arc</div>
+    </div>
+    <div class="card purple" style="text-align:center">
+      <div class="big-number" style="color:#a78bfa">$0</div>
+      <div class="stat-label">Gas paid by buyer</div>
+    </div>
+  </div>
+  <div style="margin-top:32px;text-align:center">
+    <p style="color:#64748b;font-size:14px;margin-bottom:8px">Contract deployed on Arc Testnet</p>
+    <code>0x795d9ee6BBD625beB8000675E9e950625d5EB8B6</code>
+    <p style="color:#64748b;font-size:13px;margin-top:8px">testnet.arcscan.app</p>
+  </div>
+</div>
+
+<!-- Slide 6: Circle Stack -->
+<div class="slide" id="s6">
+  <div class="grid"></div>
+  <h2>Circle Products Used</h2>
+  <div class="cards cols-2" style="max-width:800px;margin-top:24px">
+    <div class="card blue">
+      <h3>⛓ Arc Testnet</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px">EVM-compatible L1. USDC as native gas token. Sub-second finality. All transactions settle here.</p>
+    </div>
+    <div class="card blue">
+      <h3>💵 USDC</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px">Native gas + payment token on Arc. <code>0x3600...0000</code>. Used for all agent payments.</p>
+    </div>
+    <div class="card purple">
+      <h3>🏦 Circle Nanopayments</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px"><code>@circle-fin/x402-batching</code>. Gasless batched settlement. EIP-3009 offchain signing.</p>
+    </div>
+    <div class="card purple">
+      <h3>🔗 Circle Gateway</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px">Aggregates payment authorizations. Settles net positions in bulk on Arc. Zero gas for buyers.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Slide 7: Team & Links -->
+<div class="slide" id="s7">
+  <div class="grid"></div>
+  <div class="badge"><div class="dot"></div> Agentic Economy on Arc Hackathon · April 2026</div>
+  <h2 style="text-align:center">Ready to Ship</h2>
+  <div class="cards cols-2" style="max-width:700px;margin-top:24px">
+    <div class="card">
+      <h3>🐙 GitHub</h3>
+      <p style="color:#2563eb;font-size:14px;margin-top:8px">github.com/nodecapitalnext/agentmarket</p>
+    </div>
+    <div class="card">
+      <h3>🔍 ArcScan</h3>
+      <p style="color:#2563eb;font-size:14px;margin-top:8px">testnet.arcscan.app</p>
+    </div>
+    <div class="card green">
+      <h3>✅ Track</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px">Per-API Monetization Engine</p>
+    </div>
+    <div class="card purple">
+      <h3>🏆 Prize Target</h3>
+      <p style="color:#94a3b8;font-size:14px;margin-top:8px">$3,000 USDC · 1st Place</p>
+    </div>
+  </div>
+  <p style="color:#475569;font-size:14px;margin-top:32px">Built with Arc · USDC · Circle Nanopayments · x402 · Next.js · Hardhat</p>
+</div>
+
+<!-- Navigation -->
+<div class="nav">
+  <button onclick="prev()">← Prev</button>
+  <button onclick="next()">Next →</button>
+</div>
+<div class="slide-num" id="slideNum">1 / 7</div>
+
+<script>
+  let current = 1;
+  const total = 7;
+  function show(n) {
+    document.querySelectorAll('.slide').forEach(s => s.classList.remove('active'));
+    document.getElementById('s' + n).classList.add('active');
+    document.getElementById('slideNum').textContent = n + ' / ' + total;
+    current = n;
+  }
+  function next() { if (current < total) show(current + 1); }
+  function prev() { if (current > 1) show(current - 1); }
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') next();
+    if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') prev();
+  });
+</script>
+</body>
+</html>
