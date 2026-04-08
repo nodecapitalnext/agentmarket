@@ -15,7 +15,7 @@ const AGENTS = [
 export function AgentTester() {
   const [selected, setSelected] = useState<AgentType>("weather");
   const [input, setInput] = useState("");
-  const [result, setResult] = useState<unknown>(null);
+  const [result, setResult] = useState<Record<string, unknown> | null>(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
