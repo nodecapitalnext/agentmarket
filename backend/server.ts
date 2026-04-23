@@ -109,13 +109,12 @@ app.post("/api/orchestrate", async (req, res) => {
   }
 });
 
-// 7. FX Rate Agent — USDC/EURC StableFX — $0.002
-app.get("/api/fx", gateway.require("$0.002"), async (req, res) => {
+// 7. FX Rate Agent — USDC/EURC StableFX — free (demo)
+app.get("/api/fx", async (req, res) => {
   const from = (req.query.from as string) || "USDC";
   const to = (req.query.to as string) || "EURC";
   const amount = parseFloat((req.query.amount as string) || "100");
   const result = await fxRateAgent(from, to, amount);
-  txLogger.log("fx", req.payment?.payer ?? "unknown", 0.002);
   res.json(result);
 });
 
