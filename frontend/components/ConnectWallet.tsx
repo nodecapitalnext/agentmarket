@@ -18,7 +18,7 @@ export function ConnectWallet() {
           onClick={() => disconnect()}
           className="text-sm px-3 py-1 rounded-lg border border-gray-700 hover:border-red-500 hover:text-red-400 transition-colors"
         >
-          Çıkış
+          Disconnect
         </button>
       </div>
     );
@@ -29,7 +29,7 @@ export function ConnectWallet() {
       onClick={() => connect({ connector: injected() })}
       className="px-4 py-2 bg-blue-600 hover:bg-blue-500 rounded-lg text-sm font-medium transition-colors"
     >
-      Cüzdan Bağla
+      Connect Wallet
     </button>
   );
 }
